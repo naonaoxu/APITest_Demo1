@@ -1,7 +1,7 @@
 # APITest_Demo1
 
-This is an APITest_Demo for the bellow API:
-Request Method：POST（HTTPS）
+This is an APITest_Demo for the bellow API:\n
+Request Method：POST（HTTPS）\n
 Request Address：https://qyapi.weixin.qq.com/cgi-bin/department/create?access_token=ACCESS_TOKEN
 Request body：
 {
