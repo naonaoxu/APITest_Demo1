@@ -16,16 +16,8 @@ class GetToken():
     @classmethod
     def get_token_new(cls):
         conf=PraseYaml.load_yaml(corp_data_path)
-#        conf=yaml.safe_load(open('D:\\pythonProject\\APIAutomationTestDemo_naonao\\config\\corp.yaml'))
-#        conf=yaml.safe_load(open('../config/corp.yaml'))
         r = requests.get("https://qyapi.weixin.qq.com/cgi-bin/gettoken",
                          params={"corpid": conf['env']["corpid"],
                                  "corpsecret": conf['env']["corpsecret"]}
                          ).json()
         return r["access_token"]
-
-
-if __name__ == '__main__':
-    a=GetToken()
-    print(a.get_token())
-    print(token)
