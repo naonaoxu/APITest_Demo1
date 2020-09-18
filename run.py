@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
 
     #Create allure test report
-    cmd = 'allure generate -clean %s -o %s' % (xml_report_path, html_report_path)
+    cmd = 'allure generate --clean %s -o %s' % (xml_report_path, html_report_path)
     try:
         os.system(cmd)
         log.info("success create auller report,please goto 'projectpath\reports\html\index.html' to review report")
