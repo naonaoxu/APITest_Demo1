@@ -1,0 +1,10 @@
+config:
+    name: "获取所有部门"
+    url: "/cgi-bin/department/list"
+    method: "GET"
+case:
+    name: "senario:获取部门列表成功"
+    data:
+    validate:
+        exp_status_code: 200
+        exp_errcode: 0

@@ -1,0 +1,10 @@
+config:
+    name: "删掉所有部门"
+    url: "/cgi-bin/department/delete?"
+    method: DELETE
+case:
+  - name: "senario:删除所有部门"
+    data:
+    validate:
+    exp_status_code: 200
+    exp_errcode: 0

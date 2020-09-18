@@ -1,0 +1,65 @@
+config:
+    name: "CreateNewDeptAPI"
+    url: /cgi-bin/department/create?
+    method: POST
+    headers:
+    cookies:
+case:
+  - name: "Senario1:创建成功"
+    data:
+        name: "senarioA"
+        name_en: "senario1"
+        parentid: 1
+    validate:
+        exp_status_code: 200
+        exp_errcode: 0
+        errmsg: "created"
+  - name: "senario2:名字重复"
+    data:
+        name: "forDuplicateTest"
+        name_en: "senario2"
+        parentid: 1
+    validate:
+        exp_status_code: 200
+        exp_errcode: 60008
+        errmsg: "department existed"
+  - name: "senario3:parentid不为32位整形"
+    data:
+        name: "senarioC"
+        name_en: "senario3"
+        parentid: "test002"
+    validate:
+        exp_status_code: 200
+        exp_errcode: 60004
+        errmsg: "Warning: wrong json format"
+  - name: "senario4:access_token不正确"
+    data:
+      name: "senarioD"
+      name_en: "senario4"
+      parentid: 1
+    token: "wrongAcess_token"
+    validate:
+      exp_status_code: 200
+      exp_errcode: 40014
+      errmsg: "invalid access_token"
+  - name: "senario5:access_token为空"
+    data:
+      name: "senarioE"
+      name_en: "senario5"
+      parentid: 1
+    token: ""
+    validate:
+      exp_status_code: 200
+      exp_errcode: 41001
+      errmsg: "access_token missing"
+
+
+
+
+CreateNewDept200:
+  request:
+    url: https://qyapi.weixin.qq.com/cgi-bin/department/create?
+    data:
+        name: Time.udid(),
+        name_en: Time.udid(),
+        parentid: 1
