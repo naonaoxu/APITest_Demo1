@@ -26,7 +26,7 @@ log=MyLog()
 
 @allure.feature("Test Create New Department API")
 class TestDepartmentAPI:
-    @allure.testcase('Delete Departments')
+    @allure.story('Delete Departments')
     def test_delete_all_department(self):
         r = self.test_list_department()
         all_department = r.json()['department']
@@ -41,11 +41,12 @@ class TestDepartmentAPI:
         except:
             log.error("fail delete depart")
 
-    @allure.title("Test Title")
-    @allure.testcase('Create New Department')
+
+    @allure.story('Create New Department')
     @pytest.mark.parametrize('data',create_test_case['case'])
     def test_create_department(self,data):
         create_data=data['data']
+
         #prepare name_data
         if create_data["name"]=="forDuplicateTest":
             pass
@@ -76,7 +77,7 @@ class TestDepartmentAPI:
         AssertResult.assert_code(r.json()['errcode'], create_exp_errcode)
         AssertResult.assert_msg_in_text(self, r.json()['errmsg'], create_exp_errmsg)
 
-    @allure.testcase('List All Department')
+    @allure.story('List All Department')
     def test_list_department(self):
         try:
             r=BaseAPI.get_api(self,list_url,param)
