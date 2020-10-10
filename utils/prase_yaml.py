@@ -29,19 +29,23 @@ class PraseYaml:
         with open(file_path,encoding="utf-8") as f:
             update_date=yaml.dump(date,stream=f,allow_unicode=True)
 
-    #读取yaml文件里具体的字段值
-    def get_yaml_data(self,file_name,key):
+    #读取yaml文件里的具体字段值
+    @classmethod
+    def get_yaml_data(self,file_name,*krgs):
+        data = self.load_yaml(file_name)
         try:
-            data=self.load_yaml(file_name)[""][""]
-        except Exception:
-            print("未找到yaml具体字段")
+            for i in krgs:
+                data=data.get(i)
+            return data
+        except Exception as e:
+            print(e,"Not find: ",file_name,"Krgs:",krgs)
             return {}
 
 
 if __name__=="__main__":
     A=PraseYaml
     print(A.load_yaml(corp_data_path))
-    print(A.load_yaml(dept_data_path))
+
 
 
 
