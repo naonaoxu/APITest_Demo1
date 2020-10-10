@@ -10,6 +10,7 @@ server_url=PraseYaml.load_yaml(base_url_pth)['base_url']
 
 class PrepareTestData:
 
+    #set test url
     @classmethod
     def set_url(cls,api_address):
         print(api_address)
@@ -17,6 +18,7 @@ class PrepareTestData:
         test_url = server_url + api_url
         return test_url
 
+   #set token
     @classmethod
     def set_token(cls,token=None):
         if token == None:
