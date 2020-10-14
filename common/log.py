@@ -1,60 +1,33 @@
-import requests
-
-from common.get_token import GetToken
-from config.public_data import format_time
-encoding='utf-8'
-
-"""
-封装log方法
-package logging
-"""
+import logging.config
 import logging
-import os
+from config.public_data import logger_conf
 
-#LEVELS = {
-#    'debug':logging.DEBUG,
-#    'info':logging.INFO,
-#    'warning':logging.WARNING,
- #   'error':logging.ERROR,
- #   'cirtical':logging.CRITICAL
-#}
-#日志存放路径
-log_file = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'\\log\\123.log'
-logger = logging.getLogger()
+logging.config.fileConfig(logger_conf)   #相对路径和绝对路径都可以
+logger = logging.getLogger("example01")
 
-class MyLog:
-    logger.setLevel(logging.DEBUG)
-    date="%Y-%m-%d %H:%M:%S"
-    handler = logging.FileHandler(log_file, encoding='utf-8')
+#日志配置文件：多个logger,每个logger，指定不同的handler
+#handler:设定了日志输出行的格式
+#handler:设定写日志到文件（是否回滚）？还是到屏幕
+#handler：设定了打印日志的级别
 
+def debug(message):
+    # 打印debug级别的日志方法
+    logger.debug(message)
 
-    def debug(self,log_meg):
-        logger.addHandler(self.handler)
-        logger.debug("[DEBUG]" + format_time+ log_meg)
-        logger.removeHandler(self.handler)
+def warning(message):
+    # 打印warning级别的日志方法
+    logger.warning(message)
 
-    def info(self,log_meg):
-        logger.addHandler(self.handler)
-        logger.debug("[INFO]" + format_time+ log_meg)
-        logger.removeHandler(self.handler)
+def info(message):
+    #打印info级别的日志方法
+    logging.info(message)
 
-    def warning(self,log_meg):
-        logger.addHandler(self.handler)
-        logger.debug("[WARNING]" + format_time+ log_meg)
-        logger.removeHandler(self.handler)
+def error(message):
+    #打印error级别的日志方法
+    logger.error(message)
 
-    def error(self,log_meg):
-        logger.addHandler(self.handler)
-        logger.debug("[ERROR]" + format_time+ log_meg)
-        logger.removeHandler(self.handler)
-
-    def critical(self,log_meg):
-        logger.addHandler(self.handler)
-        logger.debug("[CRITICAL]" + format_time+ log_meg)
-        logger.removeHandler(self.handler)
-
-
-
-
-
-
+if __name__=="__main__":
+    debug("hi")
+    info("gloryroad")
+    warning("hello")
+    error("error")

@@ -2,21 +2,19 @@ import allure
 import pytest
 from common.assert_result import AssertResult
 from common.base_api import BaseAPI
+from common.log import *
 from common.prepare_testdata import PrepareTestData
 from config.public_data import *
 from utils.prase_yaml import PraseYaml
 from utils.util import Util
-from common.log import MyLog
-
 param=PrepareTestData.set_token()
-log=MyLog()
 
 @allure.feature("Test Create New Department API")
 class TestDepartmentAPI:
-    @allure.story('Delete Departments')
-    def test_delete_all_department(self):
+#    @allure.story('Delete Departments')
+    def setup_delete_all_department(self):
         delete_url = PrepareTestData.set_url(delete_dept_data_path)
-        r = self.test_list_department()
+        r = self.setup_list_department()
         all_department = r.json()['department']
         id_list = []
         for department in all_department[2:]:
@@ -25,10 +23,10 @@ class TestDepartmentAPI:
             for id in id_list:
                 param["id"] = id
                 r = BaseAPI.delete_api(self, delete_url, param)
-            log.debug("success delete depart")
-            log.info(str(r.json()))
+            info("success delete depart")
+            debug(str(r.json()))
         except:
-            log.error("fail delete depart")
+            error("fail delete depart")
 
     @allure.story("Story:Create department")
     @allure.description('The description of test create New Department API,it contains 5 senarios')
@@ -61,10 +59,10 @@ class TestDepartmentAPI:
         try:
             r = BaseAPI.post_api(self, create_url, create_data, param)
             print(r.json())
-            log.debug("success create depart")
-            log.info(str(r.json()))
+            info("success create depart")
+            debug(str(r.json()))
         except:
-            log.error("fail create depart")
+            error("fail create depart")
 
         create_exp_status_code = validate['validate']['exp_status_code']
         create_exp_errcode = validate['validate']['exp_errcode']
@@ -73,16 +71,16 @@ class TestDepartmentAPI:
         AssertResult.assert_code(r.json()['errcode'], create_exp_errcode)
         AssertResult.assert_msg_in_text(self, r.json()['errmsg'], create_exp_errmsg)
 
-    @allure.story('List All Department')
-    def test_list_department(self):
+#    @allure.story('List All Department')
+    def setup_list_department(self):
         list_url = PrepareTestData.set_url(list_dept_data_path)
         try:
             r=BaseAPI.get_api(self,list_url,param)
-            log.debug(" success list department ")
-            log.info(str(r.json()))
+            info(" success list department ")
+            debug(str(r.json()))
             return r
         except:
-            log.error(" fail list department")
+            error(" fail list department")
 
 
 

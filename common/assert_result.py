@@ -1,6 +1,4 @@
-from common.log import MyLog
-
-log= MyLog()
+from common.log import *
 
 class AssertResult:
 
@@ -9,10 +7,10 @@ class AssertResult:
         """验证response状态码"""
         try:
             assert result_code == expected_code
-            log.info("success assert status code")
+            info("success assert status code")
             return True
         except :
-            log.error("faile asssert status code")
+            error("faile asssert status code")
 
 
     def assert_body(self,body,body_msg,expected_msg):
@@ -22,7 +20,7 @@ class AssertResult:
             assert msg == expected_msg
             return True
         except:
-            log.error("faile asssert body")
+            error("faile asssert body")
 
 
     def assert_msg_in_text(self,acture_msg,expect_msg):
@@ -31,7 +29,7 @@ class AssertResult:
             assert expect_msg in acture_msg
             return True
         except:
-            log.error("faile asssert in text")
+            error("faile asssert in text")
 
     def assert_text(self,body,expect_msg):
         """验证response body中是否等于预期字符串"""
@@ -39,7 +37,7 @@ class AssertResult:
             assert body == expect_msg
             return True
         except:
-            log.error("faile asssert text")
+            error("faile asssert text")
 
 
 

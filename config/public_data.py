@@ -7,6 +7,9 @@ project_path=os.path.dirname(os.path.dirname(__file__))
 #config的路径
 config_path=project_path+"\\config\\config.yaml"
 
+#logger.conf的路径
+logger_conf=project_path+"\\config\\Logger.conf"
+
 #corp数据的路径：
 corp_data_path=project_path+"\\config\\corp.yaml"
 
