@@ -1,6 +1,6 @@
 **说明**  
 
-**申明:这个演示使用的测试接口是腾讯公开的企业微信的接口；所有测试(框架)代码均为自己撰写，和在职公司的测试(框架)代码无关**
+**申明:这个演示使用的测试接口是腾讯公开的企业微信的接口；所有测试(框架)代码均为自己撰写，和在职公司的测试(框架)代码无关。**
 
 **测试 API说明:**  
 这是企业微信里面创建部门的接口
@@ -32,7 +32,7 @@
 将返回的response存储起来，并且断言响应状态码，errorcode等。
 
 
-**English version ReadMe**
+**English version ReadMe**  
 **Test API:**  
 Request Method：POST（HTTPS）  
 Request Address：https://qyapi.weixin.qq.com/cgi-bin/department/create?access_token=ACCESS_TOKEN  
